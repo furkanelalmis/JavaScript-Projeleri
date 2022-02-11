@@ -108,16 +108,15 @@ function elemanSil(kitabId) {
 // 'confirm' Elemanı gerçekten silmek istediğimizi teyit etmek için kullandık.
 // findindex içerisnde bulunan parametrenin dizi içerisnde sırasını veren metoda fındındex denir
 
-function setLocalStroge() {
+function setLocalStroge() { // setLocalStroge locali seçer anlamına gelir.
     localStorage.setItem("List", JSON.stringify(List));
 }
 
 
-function getLocalStroge() {
+function getLocalStroge() { // getLocalStroge locali getir anlamına gelir.
     if (localStorage.getItem("List"))
         List = JSON.parse(localStorage.getItem("List"));
 }
-
 
 
 getLocalStroge();
