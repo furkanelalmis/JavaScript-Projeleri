@@ -27,6 +27,7 @@ function kaydet() {
     });
     getAll();
     sec("form").reset();
+    setLocalStroge(); // Listenin güncel halini alıp localstorageye attıyor.
 
 }
 
@@ -48,8 +49,11 @@ function getAll() {
             car.degeri +
             "</td>" +
             "<td>" +
-            "<button class='btn btn-warning' onClick='ıtemDüzenle'(" + car.id + ")>Düzenle</button>" +
-            "<button class='btn btn-danger' onClick='ıtemSil'(" + car.id + ") >Sil</button>" +
+
+            "<img class='w-25 mr-2' src='" + car.link + "' style='height:50px !important' />" +
+
+            "<button class='btn btn-warning mr-1 ' onClick='ıtemDüzenle'(" + car.id + ")>Düzenle</button>" +
+            "<button class='btn btn-danger ml-1 ' onClick='ıtemSil'(" + car.id + ") >Sil</button>" +
             "</td>" +
             "</tr>";
 
@@ -66,10 +70,12 @@ function düzenle() {
     List[düzen].türü = sec("typeOfCar").value;
     List[düzen].model = sec("carModel").value;
     List[düzen].degeri = sec("carValue").value;
+    List[düzen].link = sec("carImage").value;
 
     getAll();
     editCar = {};
     sec("form").reset();
+    setLocalStroge(); // düzenlemenin güncel halini alıp localstorgaye atıyor.
 
 
 }
@@ -82,12 +88,46 @@ function ıtemDüzenle(carId) {
     sec("typeOfCar").value = editCar.türü;
     sec("carModel").value = editCar.model;
     sec("carValue").value = editCar.degeri;
+    sec("carImage").value = editCar.link;
 }
 
 function ıtemSil(carId) {
     if (confirm("Elemanı Silmek İstediğinize Eminmisiniz ?")) {
-        const sil = List.findIndex((list) => list.id === carId.id)
-        List.splice(sil, 1);
+        const sil = List.findIndex((list) => list.id === carId.id) // confirim ile elemanın teyitini gerçekleştirmek için soru soruyoruz.
+        List.splice(sil, 1); // splice metodu ile eleman silebiliyoruz.
         getAll();
+        setLocalStroge(); // güncel verinin silinmsiyle local storageye atıyor.
     }
 }
+
+function setLocalStroge() { // setlocal locali seçer anlamına gelir.
+    localStorage.setItem("List", JSON.stringify(List));
+}
+
+function getLocalStroge() { // getlocal locali getir anlamına gelir.
+    if (localStorage.getItem("List"))
+        List = JSON.parse(localStorage.getItem("List"));
+}
+
+getLocalStroge();
+getAll();
+// getLocalStroge: 
+// Stringify : fonksiyonu herhangi bir Javascript nesnesini alır ve onu string formatına çevirir.
+// Parse : Bu da tahmin edebileceğiniz gibi string formatındaki veriyi javascript object yapıyor.
+
+
+sec("form").addEventListener(
+    "submit",
+    () => {
+        if (parseInt(editCar.id) > 0) { // ParseInt string bir ifadeyi numbera çevirir.
+            düzenle();
+        } else {
+            kaydet();
+        }
+    },
+    false
+);
+
+
+// Slide Olayı tablonun üstünde tanımlandı.
+// Devam edilecek butonlar eklenecek

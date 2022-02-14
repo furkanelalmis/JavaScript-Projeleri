@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="row">
-            <form id="form" class="col-md-6 mt-5">
+            <form onsubmit="return false " id="form" class="col-md-6 mt-5">
                 <div class="form-group">
                     <label for="carbrand">Car Brand</label>
                     <input class="form-control" type="name" placeholder="Arabanın Markasını Giriniz" id="carBrand">
@@ -36,8 +36,13 @@
                     <label for="carımage">Car Image</label>
                     <input class="form-control" type="url" placeholder="Arabanın Resminin Url'sini Giriniz" id="carImage">
                 </div>
-                <button class="btn btn-primary btn-block" onclick="kaydet()">Kaydet </button>
+                <button class="btn btn-primary btn-block" value="Reset form" type="submit">Kaydet </button>
             </form>
+
+            <div class="col-6 text-right justify-items-center mt-5">
+                <img class="w-50" id="priview" src="/image/audi.jpeg" alt="" />
+            </div>
+
             <div class="col-md-12 mt-5 pt-5">
                 <table class="table table-bordered">
                     <thead>
