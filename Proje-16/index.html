@@ -9,6 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head>
 
 <body>
@@ -40,7 +41,18 @@
             </form>
 
             <div class="col-6 text-right justify-items-center mt-5">
-                <img class="w-50" id="priview" src="/image/audi.jpeg" alt="" />
+                <div class="card">
+                    <img class=" pt-5 card-img-top" id="priview" src="/image/audi.jpeg" alt="" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                        <a class="card-link " href="#">Read More</a>
+                    </div>
+                    <div class=" text-center card-footer">
+                        <i class="fa fa-arrow-circle-left" onclick="prevImage()"></i>
+                        <i class="fa fa-arrow-circle-right" onclick="nextImage()"></i>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-12 mt-5 pt-5">

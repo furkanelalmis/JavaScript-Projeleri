@@ -6,6 +6,45 @@ let editCar = {
     id: "",
 };
 
+let imageIndex = 0;
+
+
+slerList = [{
+    id: 1,
+    marka: "Audi",
+    model: 2022,
+    deger: 2000000,
+    images: [{
+            url: 'http://127.0.0.1:5500/image/audi.jpeg',
+            coverState: true
+        },
+        {
+            url: 'https://www.ssmotors.com.tr/B2ELResim/AracResim2El/21068/051bfadde2a340cabf8de2b01002136a0508202021192443189_57_Buyuk.jpg',
+            coverState: false
+        },
+        {
+            url: 'http://yeniarabamodelleri.com/wp-content/uploads/2021/05/audi-a7-2021.png',
+            coverState: false
+        }
+    ]
+}]
+
+
+
+sec("priview").setAttribute('src', slerList[0].images[imageIndex].url)
+
+function prevImage() {
+    imageIndex = imageIndex > 0 ? imageIndex - 1 : 0;
+    sec("priview").setAttribute('src', slerList[0].images[imageIndex].url);
+}
+
+function nextImage() {
+    if (imageIndex < slerList[0].images.length - 1) imageIndex++;
+    sec("priview").setAttribute('src', slerList[0].images[imageIndex].url);
+}
+
+
+
 function sec(id) {
     return document.getElementById(id);
 }
@@ -114,6 +153,14 @@ getAll();
 // getLocalStroge: 
 // Stringify : fonksiyonu herhangi bir Javascript nesnesini alır ve onu string formatına çevirir.
 // Parse : Bu da tahmin edebileceğiniz gibi string formatındaki veriyi javascript object yapıyor.
+
+
+
+
+
+
+
+
 
 
 sec("form").addEventListener(
