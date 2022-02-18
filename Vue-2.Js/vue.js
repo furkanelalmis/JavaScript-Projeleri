@@ -5,7 +5,8 @@ new Vue({
     data: {
         title: "Merhaba",
         message: "Hoş Geldin",
-        link: "http://www.facebook.com"
+        link: "http://www.facebook.com",
+        blogLink: "<a href='http://www.instagram.com'>Link</a>"
 
     },
     methods: {
@@ -25,4 +26,6 @@ new Vue({
 
 
 // Directive Nedir ? bize vuje js tarafından işlem yapmamızı sağlayan tanımlamalar diyebiliriz.
-// v-Once Nedir ? İlk Rendırdan sonra HTML üzerinden verinin data içerisinde neyse öyle kalmasını sağlar.
+// (v-Once) Nedir ? İlk Rendırdan sonra HTML üzerinden verinin data içerisinde neyse öyle kalmasını sağlar.
+// (v-html) data tanımlanmş blogLinki yazdığımız zaman direk olarak Linki sayfaya aktarır.(v-html)
+// yani Script kod olarak dataya tanımladığımız zaman html sayfasına direk olarak aktarır.(v-html)
