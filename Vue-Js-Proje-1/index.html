@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    .text-center {
+        text-align: center;
+    }
+    
+    .healthbar {
+        width: 80%;
+        height: 40px;
+        background-color: #fff;
+        margin: auto;
+        transition: width 500ms;
+    }
+    
+    .controls,
+    .log {
+        margin-top: 30px;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 0px 3px 6px #ccc;
+    }
+    
+    .turn {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    
+    .log ul {
+        list-style: none;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .log ul li {
+        margin: 5px;
+    }
+    
+    .log ul .player-turn {
+        color: blue;
+        background-color: #e4e8ff;
+    }
+    
+    .log ul .monster-turn {
+        color: red;
+        background-color: #ffc0c1;
+    }
+    
+    button {
+        font-size: 20px;
+        background-color: #eee;
+        padding: 12px;
+        box-shadow: 0 1px 1px black;
+        margin: 10px;
+    }
+    
+    #start-game {
+        background-color: #aaffb0;
+    }
+    
+    #start-game:hover {
+        background-color: #76ff7e;
+    }
+    
+    #attack {
+        background-color: #ff7367;
+    }
+    
+    #attack:hover {
+        background-color: #ff3f43;
+    }
+    
+    #special-attack {
+        background-color: #ffaf4f;
+    }
+    
+    #special-attack:hover {
+        background-color: #ff9a2b;
+    }
+    
+    #heal {
+        background-color: #aaffb0;
+    }
+    
+    #heal:hover {
+        background-color: #76ff7e;
+    }
+    
+    #give-up {
+        background-color: #ffffff;
+    }
+    
+    #give-up:hover {
+        background-color: #c7c7c7;
+    }
+</style>
+
+<body>
+
+    <div id="items">
+        <section class="row">
+            <div class="col-sm-6">
+                <h1 class="text-center mr-5">BEN</h1>
+                <div class="healthbar">
+                    <div :style="player_progress" class="healthbar text-center" style="background-color:red; margin:0; color : white">
+                        {{player_heal}}%
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h1 class="text-center mr-5">DÜŞMAN</h1>
+                <div class="healthbar">
+                    <div :style="monster_progress" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                        {{monster_heal}}%
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="row controls" v-if="!game_is_on ">
+            <div class="col-sm-12">
+                <button id="start-game" @click="start_game">Yeni Oyun</button>
+            </div>
+        </section>
+
+        <section class="row controls" v-if="game_is_on">
+            <div class="col-sm-12">
+
+                <button id="attack" @click="attack">Saldırı</button>
+                <button id="special-attack" @click="special_attack">Özel Saldırı</button>
+                <button id="heal" @click="heal_up">Yardım</button>
+                <button id="give-up" @click="give_up">Pes et</button>
+            </div>
+        </section>
+        <section class="row log" v-if="game_is_on">
+            <div class="col-sm-12">
+                <ul>
+                    <li :class="{'player-turn' : log.turn == 'p', 'monster-turn' : log.turn == 'm'}" v-for="log in logs"> {{log.text}} </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="Vue.Js"></script>
+</body>
+
+</html>
